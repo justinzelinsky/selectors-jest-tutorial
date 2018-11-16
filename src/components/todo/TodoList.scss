@@ -1,11 +1,5 @@
 .todo-container {
-  width: 800px;
-
-  header {
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-  }
+  padding: 0 50px;
 }
 
 ul.todo-list {
@@ -13,10 +7,11 @@ ul.todo-list {
   margin: 20px 0;
 }
 
-.todo-list-form {
-  display: flex;
+li.empty-list {
+  list-style-type: none;
 }
 
-.new-todo-input {
-  flex: 1;
+.tasks-count {
+  font-size: 15px;
+  margin-left: 5px;
 }

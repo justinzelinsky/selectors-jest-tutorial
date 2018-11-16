@@ -1,6 +1,12 @@
 import initialState from 'model/initialState';
 import { ACTIONS } from 'utils/constants';
 
+export function filterOn(state = initialState.filterOn, action) {
+  return action.type === ACTIONS.FILTER_ON
+    ? action.payload.filter
+    : state;
+}
+
 export function newTask(state = initialState.newTask, action) {
   switch (action.type) {
     case ACTIONS.TODO_ITEM.UPDATE_NEW:
@@ -37,6 +43,7 @@ export function todoList(state = initialState.todoList, action) {
 }
 
 const reducers = {
+  filterOn,
   newTask,
   todoList
 };

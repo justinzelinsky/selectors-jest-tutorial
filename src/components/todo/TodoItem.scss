@@ -1,7 +1,14 @@
 .todo-item {
+  align-items: center;
   list-style-type: none;
   margin: 10px 0;
   display: flex;
+  padding: 2px;
+
+  &.complete {
+    background-color: gray;
+    opacity: .5;
+  }
 }
 
 .strikedOut {
@@ -13,7 +20,7 @@
 }
 
 .todo-task {
-  flex: 2;
+  flex: 6;
 }
 
 .todo-remove {

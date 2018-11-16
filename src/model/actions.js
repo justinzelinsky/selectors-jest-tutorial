@@ -7,6 +7,12 @@ const actions = {
       payload: {task}
     };
   },
+  filterOn(filter) {
+    return {
+      type: ACTIONS.FILTER_ON,
+      payload: {filter}
+    };
+  },
   removeTodoItem(id) {
     return {
       type: ACTIONS.TODO_LIST.REMOVE,
