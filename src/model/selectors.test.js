@@ -2,7 +2,7 @@ import initialState from 'model/initialState';
 import { todoList } from 'model/reducers';
 import { getTodos } from 'model/selectors';
 import { ACTIONS, FILTERS } from 'utils/constants';
-import { getFilteredTodoList } from './selectors';
+import { getFilterCount, getFilteredTodoList } from './selectors';
 
 function getTodoList(count) {
   const todoList = [];
@@ -63,5 +63,36 @@ describe('Todo Selectors', () => {
       const filteredTodos = getFilteredTodoList(state);
       expect(filteredTodos).toHaveLength(1);
     });
+  });
+
+  describe('getFilterCount', () => {
+    it('should be have all tasks as remaining', () => {
+      const list = getTodoList(5);
+      const state = {
+        filterOn: FILTERS.ALL,
+        todoList: list
+      };
+      const filterCount = getFilterCount(state);
+      expect(filterCount[FILTERS.ALL]).toBe(5);
+      expect(filterCount[FILTERS.COMPLETE]).toBe(0);
+      expect(filterCount[FILTERS.REMAINING]).toBe(5);
+    });
+  });
+
+  it('should have one complete and the rest remaining', () => {
+    const list = getTodoList(5);
+    const state = {
+      filterOn: FILTERS.COMPLETE,
+      todoList: todoList(list, {
+        type: ACTIONS.TODO_ITEM.TOGGLE,
+        payload: {
+          id: list[0].id
+        }
+      })
+    };
+    const filterCount = getFilterCount(state);
+    expect(filterCount[FILTERS.ALL]).toBe(5);
+    expect(filterCount[FILTERS.COMPLETE]).toBe(1);
+    expect(filterCount[FILTERS.REMAINING]).toBe(4);
   });
 });
