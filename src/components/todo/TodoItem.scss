@@ -4,11 +4,10 @@
   margin: 10px 0;
   display: flex;
   padding: 2px;
+}
 
-  &.complete {
-    background-color: gray;
-    opacity: .5;
-  }
+.complete {
+  opacity: .5;
 }
 
 .strikedOut {
@@ -16,13 +15,13 @@
 }
 
 .todo-checkbox {
-  flex: 1;
+  //flex: 1;
 }
 
 .todo-task {
-  flex: 6;
+  //flex: 6;
 }
 
 .todo-remove {
-  flex: 1
+  //flex: 1
 }

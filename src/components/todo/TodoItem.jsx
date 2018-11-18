@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { Button, Checkbox, FormControlLabel } from '@material-ui/core';
+import { Button, Checkbox, Grid, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -9,28 +9,31 @@ import mapDispatchToProps from 'model/mapDispatchToProps';
 import './TodoItem.scss';
 
 const TodoItem = ({ actions, item: { id, isDone, task } }) => {
-  const itemStyle = classnames('todo-item', {complete: isDone});
+  const taskTyle = classnames('todo-task', {complete: isDone});
   const handleRemoveItem = () => actions.removeTodoItem(id);
   const handleToggleItem = () => actions.toggleTodoItem(id);
   return (
-    <li styleName={itemStyle}>
-      <FormControlLabel
-        control={
+    <li styleName="todo-item">
+      <Grid alignItems="center" container={true}>
+        <Grid item={true} xs={1}>
           <Checkbox
             checked={isDone}
             onChange={handleToggleItem}
           />
-        }
-        label="Finished"
-      />
-      <span styleName="todo-task">{task}</span>
-      <Button 
-        variant="contained" color="secondary"
-        onClick={handleRemoveItem} 
-        styleName="todo-remove"
-      >
-        Remove
-      </Button>
+        </Grid>
+        <Grid item={true} xs={9}>
+          <Typography styleName={taskTyle}>{task}</Typography>
+        </Grid>
+        <Grid item={true} xs={2}>
+          <Button 
+            color="secondary"
+            onClick={handleRemoveItem} 
+            variant="contained" 
+          >
+            Remove
+          </Button>
+        </Grid>
+      </Grid>
     </li>
   );
 };

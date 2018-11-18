@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core';
+import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -12,30 +12,27 @@ const TodoSettings = ({ actions, filterCount, filterOn }) => {
   return (
     <div>
       <h1>Settings</h1>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">Filter on</FormLabel>
-        <RadioGroup
-          aria-label="filter"
-          value={filterOn}
-          onChange={onFilterChange}
-        >
-          <FormControlLabel
-            value={FILTERS.ALL}
-            control={<Radio color="primary" />}
-            label={`All (${filterCount[FILTERS.ALL]})`}
-          />
-          <FormControlLabel
-            value={FILTERS.COMPLETE}
-            control={<Radio color="primary" />}
-            label={`Complete (${filterCount[FILTERS.COMPLETE]})`}
-          />
-          <FormControlLabel
-            value={FILTERS.REMAINING}
-            control={<Radio color="primary" />}
-            label={`Remaining (${filterCount[FILTERS.REMAINING]})`}
-          />
-        </RadioGroup>
-      </FormControl>
+      <RadioGroup
+        aria-label="filter"
+        value={filterOn}
+        onChange={onFilterChange}
+      >
+        <FormControlLabel
+          value={FILTERS.ALL}
+          control={<Radio color="primary" />}
+          label={`All (${filterCount[FILTERS.ALL]})`}
+        />
+        <FormControlLabel
+          value={FILTERS.COMPLETE}
+          control={<Radio color="primary" />}
+          label={`Complete (${filterCount[FILTERS.COMPLETE]})`}
+        />
+        <FormControlLabel
+          value={FILTERS.REMAINING}
+          control={<Radio color="primary" />}
+          label={`Remaining (${filterCount[FILTERS.REMAINING]})`}
+        />
+      </RadioGroup>
     </div>
   );
 };

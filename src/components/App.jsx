@@ -11,13 +11,13 @@ const App = () => {
   return (
     <div styleName="root">
       <AppHeader />
-      <Grid container={true} spacing={24}>
-        <Grid item={true} xs={2}>
+      <Grid container={true} spacing={8}>
+        <Grid item={true} xs={12} sm={4} md={2}>
           <Paper styleName="paper">
             <TodoSettings />
           </Paper>
         </Grid>
-        <Grid item={true} xs={10}>
+        <Grid item={true} xs={12} sm={8} md={10}>
           <Paper styleName="paper">
             <TodoList />
           </Paper>
