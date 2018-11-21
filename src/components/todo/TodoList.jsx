@@ -5,12 +5,12 @@ import { If } from 'react-control-flow-components';
 import { connect } from 'react-redux';
 
 import mapDispatchToProps from 'model/mapDispatchToProps';
-import { getFilteredTodoList } from 'model/selectors';
+import { getFilterCount, getFilteredTodoList } from 'model/selectors';
 import TodoItem from 'todo/TodoItem';
 
 import './TodoList.scss';
 
-const TodoList = ({ actions, newTask, todoList }) => {
+const TodoList = ({ actions, filterCount, filterOn, newTask, todoList }) => {
   const handleAddListItem = event => {
     event.preventDefault();
     if (newTask) {
@@ -21,7 +21,7 @@ const TodoList = ({ actions, newTask, todoList }) => {
   return (
     <div styleName="todo-container"> 
       <h1>
-        To-Do List
+        To-Do List ({filterCount[filterOn]})
       </h1>
       <form onSubmit={handleAddListItem}>
         <TextField
@@ -47,11 +47,15 @@ const TodoList = ({ actions, newTask, todoList }) => {
 
 TodoList.propTypes = {
   actions: PropTypes.object.isRequired,
+  filterCount: PropTypes.object.isRequired,
+  filterOn: PropTypes.string.isRequired,
   newTask: PropTypes.string.isRequired,
   todoList: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
+  filterCount: getFilterCount(state),
+  filterOn: state.filterOn,
   newTask: state.newTask,
   todoList: getFilteredTodoList(state)
 });
